@@ -107,6 +107,59 @@
       background-size: 60px 60px;
     }
 
+    .spline-container {
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 500px;
+      height: 500px;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .spline-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: auto;
+    }
+
+    @media (max-width: 1199px) {
+      .spline-container {
+        width: 350px;
+        height: 350px;
+        right: 2%;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      .spline-container {
+        width: 280px;
+        height: 280px;
+        right: 0;
+        top: 45%;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .spline-container {
+        width: 220px;
+        height: 220px;
+        right: 5%;
+        top: 38%;
+        opacity: 0.7;
+      }
+    }
+
+    @media (max-width: 479px) {
+      .spline-container {
+        width: 160px;
+        height: 160px;
+        top: 32%;
+        opacity: 0.5;
+      }
+    }
+
     .hero-tag {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: rgba(255,92,0,0.12);
@@ -772,6 +825,9 @@
   <section id="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
+    <div class="spline-container">
+      <iframe src='https://my.spline.design/nexbotbyaximoriscopycopy-TSUCe1HEwonKuUZB4eGiBJLC/scene.splinecode'></iframe>
+    </div>
     <div class="hero-tag">🚀 Full-Stack Developer</div>
     <h1>Hi, I'm<br><span class="highlight">Ayush</span><br>Bhatnagar.</h1>
     <p class="hero-sub">Building scalable web applications with modern technologies. Passionate about clean code and creating impactful digital experiences.</p>
@@ -791,25 +847,6 @@
       <div>
         <div class="stat-num">30<span>+</span></div>
         <div class="stat-label">Happy Clients</div>
-      </div>
-    </div>
-
-    <div class="floating-badge">
-      <div class="badge-row">
-        <div class="badge-icon" style="background:rgba(0,229,255,0.1);">⚡</div>
-        <div><div class="badge-title">Fast Delivery</div><div class="badge-sub">On-time, every time</div></div>
-      </div>
-      <div class="badge-row">
-        <div class="badge-icon" style="background:rgba(0,255,135,0.1);">📱</div>
-        <div><div class="badge-title">Responsive</div><div class="badge-sub">All devices</div></div>
-      </div>
-      <div class="badge-row">
-        <div class="badge-icon" style="background:rgba(255,214,0,0.1);">🔒</div>
-        <div><div class="badge-title">Clean Code</div><div class="badge-sub">Well documented</div></div>
-      </div>
-      <div class="badge-row">
-        <div class="badge-icon" style="background:rgba(124,58,237,0.1);">🎨</div>
-        <div><div class="badge-title">Modern Design</div><div class="badge-sub">Pixel perfect</div></div>
       </div>
     </div>
   </section>
