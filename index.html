@@ -1068,12 +1068,9 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const SUPABASE_URL = 'https://sryhhectdkakcycwipkc.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyeWhoZWN0ZGtha2N5Y3dpcGtjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NTI0NjY4OSwiZXhwIjoyMDkwODIyNjg5fQ.OahYDTjN2bwBELM1p89C_NqLANUc1VIbFoUEL7yzt6Q';
-
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyeWhoZWN0ZGtha2N5Y3dpcGtjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NTI0NjY4OSwiZXhwIjoyMDkwODIyNjg5fQ.OahYDTjN2bwBELM1p89C_NqLANUc1VIbFoUEL7yzt6Q';
 
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursor-ring');
@@ -1116,8 +1113,8 @@
     function closeMenu() {
       const navLinks = document.getElementById('navLinks');
       const toggle = document.querySelector('.mobile-toggle');
-      navLinks.classList.remove('active');
-      toggle.classList.remove('active');
+      navLinks.classList.toggle('active');
+      toggle.classList.toggle('active');
     }
 
     document.querySelectorAll('#navLinks a').forEach(link => {
@@ -1168,13 +1165,24 @@
       btnText.textContent = 'Sending...';
 
       try {
-        const { data, error } = await supabase
-          .from('message and inquires')
-          .insert([
-            { Name: name, Email: email, Content: message }
-          ]);
+        const response = await fetch(SUPABASE_URL + '/rest/v1/message and inquires', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_KEY,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({
+            Name: name,
+            Email: email,
+            Content: message
+          })
+        });
 
-        if (error) throw error;
+        if (!response.ok) {
+          throw new Error('Failed to send');
+        }
 
         submitBtn.classList.remove('loading');
         submitBtn.classList.add('success');
