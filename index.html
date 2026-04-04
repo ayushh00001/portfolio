@@ -1169,9 +1169,9 @@
 
       try {
         const { data, error } = await supabase
-          .from('contact_messages')
+          .from('message and inquires')
           .insert([
-            { name, email, message }
+            { Name: name, Email: email, Content: message }
           ]);
 
         if (error) throw error;
